@@ -1,6 +1,6 @@
-#define buzzer 9
-const int trigpin = 6 ;
-const int echopin = 5 ;
+#define buzzer 15
+#define trigpin  14 
+#define echopin  12 
 
 long duration;  
 int distance;
@@ -19,16 +19,23 @@ void loop() {
   digitalWrite(trigpin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigpin, LOW);
-
+  digitalWrite(buzzer , 15);
   duration = pulseIn(echopin, HIGH);
 
-  distance = duration * 0.034 / 2  * 0.01 ;
+  distance = duration * 0.034 / 2   ;
 
   Serial.print("Distance: ");
   Serial.print(distance);
-  Serial.println(" m");
-  if(distance <= 1){
-    tone(9 , 220 , 200);
+  Serial.println(" cm");
+  if(distance <= 30){
+    // tone(9 , 220 , 200);
+    digitalWrite(buzzer , 15);
+    Serial.println("we are toooooo close!!");
+  }
+  else if(distance <= 80){
+    // tone(9 , 220 , 200);
+    digitalWrite(buzzer , 15);
+    Serial.println("we are close!");
   }
   delay(100);
   }
